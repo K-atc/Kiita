@@ -19,10 +19,11 @@ PHP 覚書
 トークンの直後に空白を入れると<<が云々エラーが出るので注意。
 インデントはしてはいけない。
 詳しくは [PHP: 文字列 - Manual](http://php.net/manual/ja/language.types.string.php)
+
 ```php
 $md_source = <<<HERE
 てすとまーくだうん
-====
+===
 it works
 HERE;
 ```
