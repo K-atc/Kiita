@@ -1,14 +1,23 @@
 <?php
 
+error_reporting(-1);
+
 include './kiita/kiita.php';
-use Katc\Kiita;
+use \Katc\Kiita;
 
-$md_source = <<<HERE
-h1
-===
-it works
-HERE;
+if(isset($_GET['file'])){
+	$md_source_file_path = $_GET['file'];
+}
+else if(isset($argv[1])){
+	$md_source_file_path = $argv[1];
+}
+else{
+	$md_source_file_path = "Readme.md";
+}
 
-$html_body = Kiita::render($md_source);
-$html = Kiita::convertToHtml5Format($html_body);
+
+
+$processor = new Kiita();
+$html_body = $processor->render('./public/markdown/' . $md_source_file_path);
+$html = $processor->convertToHtml5Format($html_body);
 echo $html;
