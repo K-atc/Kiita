@@ -30,10 +30,16 @@ class Kiita  {
 				"[Kiita] Illigal file extention (" . $md_source_file_path . ")", 100);
 			return "";
 		}
+		if(file_exists($md_source_file_path) === false){
+			throw new \Exception(
+				pathinfo($md_source_file_path, PATHINFO_BASENAME) . " is not exsists.", 404);
+			return "";
+		}
 		$body = file_get_contents($md_source_file_path);
 		if($body === FALSE){
 			throw new \Exception(
 				pathinfo($md_source_file_path, PATHINFO_BASENAME) . " is not exsists.", 404);
+			return "";
 		}
 		return $body;
 	}

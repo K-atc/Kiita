@@ -4,7 +4,7 @@ define('MD_FILE_PATH_PREFIX', './public/markdown/');
 include './kiita/processor.php';
 use \Katc\Kiita;
 
-// error_reporting(-1);
+error_reporting(-1);
 
 $md_ext = ['md'];
 
@@ -75,7 +75,7 @@ try{
 			$html = $processor->convert($rendered->output);
 		}
 		else{
-			echo "<!-- this is chached file -->\n";
+			$html = "<!-- this is chached file -->\n" . $html;
 		}
 		if($md_source_file_path !== "./Readme.md"){
 			$processor->chache($md_source_file_path, $html);
@@ -84,12 +84,7 @@ try{
 	echo $html;
 }
 catch(Exception $e){
-	if($e->getCode() === 404){
-		header("HTTP/1.1 404 Not Found");
-		header("Location: 404.html#" . $e->getMessage());
-	}
-	else {
-		header("HTTP/1.1 404 Not Found");
-		header("Location: 404.html#" . $e->getMessage());
-	}
+	header("Location: 404.html#" . $e->getMessage());
 }
+
+?>

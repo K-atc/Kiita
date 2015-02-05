@@ -23,6 +23,7 @@ trait Index {
 	}
 
 	public function addIndex($file_name, $title){
+		if($title === "") return;
 		$index = $this->getIndex();
 		$index[$file_name] = $title;
 		$serialized = serialize($index);
