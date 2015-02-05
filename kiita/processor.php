@@ -31,7 +31,11 @@ class Kiita  {
 			return "";
 		}
 		$body = file_get_contents($md_source_file_path);
-		return $body;	
+		if($body === FALSE){
+			throw new \Exception(
+				pathinfo($md_source_file_path, PATHINFO_BASENAME) . " is not exsists.", 404);
+		}
+		return $body;
 	}
 
 	public function raw($md_source_file_path){

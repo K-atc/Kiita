@@ -6,7 +6,7 @@ Welcome to Kiita
 これは任意のWebサーバ上で[Qiita](http://qiita.com/)もどきを実現するphpライブラリです。
 [GitHub](https://github.com/K-atc/Kiita)で公開しています。
 
-サーバ上のMarkdownファイルに対する動作例→[sample.md](http://katc.sakura.ne.jp/Kiita/?file=sample.md)
+サーバ上のMarkdownファイルに対する動作例→[sample.md](http://katc.sakura.ne.jp/Kiita/?file=sample.md) [DEMO]
 
 [投稿記事一覧](http://katc.sakura.ne.jp/Kiita/?list)
 

@@ -54,16 +54,19 @@ try{
 
 	$processor = new Kiita();
 	$processor->chache_control = false;
+	// view raw
 	if(isset($_GET['view'])){
 		if($_GET['view'] == 'raw'){
 			$html = $processor->raw($md_source_file_path);
 		}
 	}
+	// 投稿記事一覧 (Posted Markdown List)
 	else if(isset($_GET['list']) || (isset($argv[1]) && $argv[1] === "list")){
 		$md_source = $processor->getIndexMarkdown();
 		$rendered = $processor->renderText($md_source);
 		$html = $processor->convert($rendered->output);
 	}
+	// 通常(Usual)
 	else{
 		$html = $processor->getChachedHtmlContent($md_source_file_path);
 		if($html === ""){
@@ -81,7 +84,12 @@ try{
 	echo $html;
 }
 catch(Exception $e){
-	header("HTTP/1.1 404 Not Found");
-	echo "<h1>Out of Service</h1>";
-	echo $e->getMessage();
+	if($e->getCode() === 404){
+		header("HTTP/1.1 404 Not Found");
+		header("Location: 404.html#" . $e->getMessage());
+	}
+	else {
+		header("HTTP/1.1 404 Not Found");
+		header("Location: 404.html#" . $e->getMessage());
+	}
 }
