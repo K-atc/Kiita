@@ -72,6 +72,7 @@ try{
 		if($html === ""){
 			$rendered = $processor->render($md_source_file_path);
 			$processor->addIndex($md_source_file_path, $rendered->title);
+			$processor->document_title = $rendered->title;
 			$html = $processor->convert($rendered->output);
 		}
 		else{
