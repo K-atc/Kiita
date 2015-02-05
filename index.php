@@ -53,7 +53,7 @@ try{
 	}
 
 	$processor = new Kiita();
-	$processor->chache_control = false;
+	$processor->chache_control = true;
 	// view raw
 	if(isset($_GET['view'])){
 		if($_GET['view'] == 'raw'){
@@ -69,13 +69,13 @@ try{
 	// 通常(Usual)
 	else{
 		$html = $processor->getChachedHtmlContent($md_source_file_path);
-		if($html === ""){
+		if($html === ""){ //キャッシュミス（有効期限切れか一度も変換されてない）
 			$rendered = $processor->render($md_source_file_path);
 			$processor->addIndex($md_source_file_path, $rendered->title);
 			$processor->document_title = $rendered->title;
 			$html = $processor->convert($rendered->output);
 		}
-		else{
+		else{ //キャッシュヒット
 			$html = "<!-- this is chached file -->\n" . $html;
 		}
 		if($md_source_file_path !== "./Readme.md"){
