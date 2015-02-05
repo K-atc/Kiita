@@ -33,10 +33,13 @@ trait Index {
 		$md_source = $this->index_markdown_title . "\n====\n";
 		$index = $this->getIndex();
 		$base_uri = "http://" . $_SERVER["HTTP_HOST"] . explode('?', $_SERVER["REQUEST_URI"])[0];
+		// NOTE: このようにすると最近変換した順になる
+		$md_source_list = "";
 		foreach ($index as $key => $value) {
 			$base_name = pathinfo($key, PATHINFO_BASENAME);
-			$md_source .= "* [${value}](${base_uri}?file=${base_name})\n";
+			$md_source_list = "* [${value}](${base_uri}?file=${base_name})\n" . $md_source_list;
 		}
+		$md_source .= $md_source_list;
 		return $md_source;
 	}
 }

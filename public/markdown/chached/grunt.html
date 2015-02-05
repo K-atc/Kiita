@@ -1,0 +1,160 @@
+<!DOCTYPE html>		
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>Kiita</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+  <link rel="stylesheet" href="./public/stylesheet/qiita-base.css">
+  <link rel="stylesheet" href="./public/stylesheet/qiita-detail.css">
+  <link rel="stylesheet" href="./public/stylesheet/markdown.css">
+</head>
+<body class="markdownContent" style="width:700px; margin: 50px auto;">
+  <h1>Grunt 覚書</h1>
+
+<h2>初めて</h2>
+
+<ol>
+<li>本家からnode.jsをインストール</li>
+<li>gruntをグローバルインストール
+npm install -g grunt-cli</li>
+</ol>
+
+<h2>個別ディレクトリ</h2>
+
+<h3>基本</h3>
+
+<ol>
+<li>一から始める場合
+npm init
+
+<ul>
+<li>対話形式でパッケージの情報を決定できる。</li>
+<li>package.jsonが生成される。</li>
+</ul></li>
+<li>npm install grunt --save-dev
+「save-dev」オプションを付けているので、package.jsonに依存関係が追記されます。
+package.jsonがあれば、他の環境でも「npm install」とすれば同じようにモジュールがインストールされます。</li>
+<li>Gruntflile.jsを作成する。grunt（またはgrunt default）で実行可能</li>
+</ol>
+
+<h3>ファイル変更監視</h3>
+
+<p>( http://www.atmarkit.co.jp/ait/articles/1404/08/news033_2.html )</p>
+
+<ol>
+<li>npm install grunt-contrib-watch --save-dev</li>
+<li>initConfigにwatchタスク追加</li>
+<li>Gruntfile.jsに <code>grunt.loadNpmTasks('grunt-contrib-watch');</code> を追加</li>
+<li>「grunt watch」コマンドを実行すると、ファイルの監視が始まります。</li>
+</ol>
+
+<h2>gruntタスク</h2>
+
+<h3>JS Hint</h3>
+
+<ul>
+<li>参考： http://gaishimo.hatenablog.com/entry/2013/03/09/185054</li>
+<li>JSの構文チェッカー</li>
+</ul>
+
+<h4>インストール</h4>
+
+<p>npm install grunt-contrib-jshint --save-dev</p>
+
+<h4>.jshintrcの設定</h4>
+
+<ul>
+<li>JS Hintのパラメータとなる。</li>
+<li>設定のパラメータなどの説明はGoogle検索に任せる。</li>
+</ul>
+
+<h4>.jshintignoreの設定</h4>
+
+<ul>
+<li>外部ライブラリなど対象外のファイルを指定できる。</li>
+</ul>
+
+<h4>有効化</h4>
+
+<p>grunt.loadNpmTasks('grunt-contrib-jshint');</p>
+
+<h3>watch</h3>
+
+<ul>
+<li>ファイルの変更を監視してタスクを実行してくれる</li>
+</ul>
+
+<h4>インストール</h4>
+
+<p>npm install grunt-contrib-watch --save-dev</p>
+
+<h4>有効化</h4>
+
+<p>grunt.loadNpmTasks('grunt-contrib-watch');</p>
+
+<h3>livereload</h3>
+
+<ul>
+<li>変更時にブラウザを自動的にリロードさせる。</li>
+<li>connect, watchが必要。</li>
+<li>watchパッケージにビルドインされている。</li>
+</ul>
+
+<h4>インストール</h4>
+
+<p>npm install grunt-contrib-connect  --save-dev</p>
+
+<h4>Gruntfile.js</h4>
+
+<h5>grunt.initConfig</h5>
+
+<pre><code>    // サーバースタート
+    connect: {
+        demo: {
+            options: {
+                port: 9001,
+                // middleware: function(connect) {
+                //     return [lrSnippet, folderMount(connect, '.')];
+                // },
+                base: 'demo.html'
+            }
+        }
+    },
+</code></pre>
+
+<h5>grunt.initConfigのwatchオプションに追加</h5>
+
+<pre><code>        html_files: {
+            files: ['**/*.html'],
+            tasks: [],
+        },
+        options: {
+            livereload: true,
+            spawn: false,
+        },
+</code></pre>
+
+<h5>タスクを更新</h5>
+
+<p>grunt.registerTask('default', ['connect','watch']);</p>
+
+<h3>ChromeのLivereloadエクステンションをインストール</h3>
+
+<ul>
+<li>Chrome Web Storeより</li>
+</ul>
+
+<h3>注意</h3>
+
+<ul>
+<li>gruntのタスクをすでに実行中でそのタスクにconnectを追加する場合（上記の方法）、中止して再実行する必要あり。</li>
+</ul>
+
+<h4>Cannot GET /って出たんだけど...</h4>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script src="./public/script/main.js"></script>
+</body>
+</html>

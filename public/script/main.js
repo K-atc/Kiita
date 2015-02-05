@@ -1,7 +1,7 @@
 hljs.initHighlightingOnLoad();
 
 // install view-row button
-if(location.href.split('?').indexOf('list') < 0){
+if(location.href.indexOf('?')  < 0 || location.href.split('?')[1].indexOf('list') < 0){
     var e = document.createElement("span");
     e.textContent = 'view raw';
     e.id = "view-raw";
