@@ -1,3 +1,5 @@
+DefaultLanguage ja
+
 AddHandler cgi-script .rb
 
 #RewriteEngine On

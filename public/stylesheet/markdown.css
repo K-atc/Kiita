@@ -2,3 +2,22 @@
     padding: .2em .5em;
     background: none;
 }
+
+h1 {
+    /*cursor: pointer;*/
+}
+
+#view-raw {
+    display: inline-block;
+    /*opacity: 0;*/
+    margin-left: .7em;
+    padding: .08em .3em;
+    background-color: #050505;
+    border-radius: 2px;
+    color: #fff;
+    font-size: .4em;
+    font-weight: lighter;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}

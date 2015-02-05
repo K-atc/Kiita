@@ -1,7 +1,7 @@
 <?php
 namespace Katc;
 
-class PostProcessing {
+trait PostProcessing {
 
 	// <title></title>
 	// if no titles are given, "Kiita" will be assigned
@@ -14,8 +14,9 @@ class PostProcessing {
 	// <script></script>
 	public $scripts = array();
 
-	function convertToHtml5Format($body){
+	function convert($body){
 		return <<<HERE
+<!DOCTYPE html>		
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -30,7 +31,7 @@ class PostProcessing {
 <body class="markdownContent" style="width:700px; margin: 50px auto;">
   $body
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="./public/script/main.js"></script>
 </body>
 </html>
 HERE;
