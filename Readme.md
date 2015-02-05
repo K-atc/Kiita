@@ -8,6 +8,8 @@ Welcome to Kiita
 
 サーバ上のMarkdownファイルに対する動作例→[sample.md](http://katc.sakura.ne.jp/Kiita/?file=sample.md)
 
+[投稿記事一覧](http://katc.sakura.ne.jp/Kiita/?list)
+
 Dependency
 ----
 index.phpと同じディレクトリにvenderディレクトリを作り、
@@ -40,10 +42,6 @@ How to use
 
 TODO
 ----
-### 記事一覧
-
-
-
 ### ファイル名を出す拡張形式は…
 
 ```ruby: test.rb 
